@@ -13,6 +13,17 @@ builder.Services.AddSwaggerGen(c =>
 {
   c.SwaggerDoc("v1", new OpenApiInfo { Title = "SluggoPIZZA API", Description = "Keep track of your pizzas", Version = "v1" });
 });
+
+// Add Cors configuration (allow all)
+string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+builder.Services.AddCors(options =>
+{
+  options.AddPolicy(MyAllowSpecificOrigins,
+  builder =>
+  {
+    builder.WithOrigins("*");
+  });
+});
 var app = builder.Build();
 
 // Add Swagger
@@ -21,6 +32,9 @@ app.UseSwaggerUI(c =>
 {
   c.SwaggerEndpoint("/swagger/v1/swagger.json", "SluggoPIZZA API V1");
 });
+
+// Use the CORS capability
+app.UseCors(MyAllowSpecificOrigins);
 
 app.MapGet("/", () => "Hello World!");
 
