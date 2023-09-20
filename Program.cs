@@ -26,6 +26,8 @@ builder.Services.AddCors(options =>
   });
 });
 var app = builder.Build();
+app.UseDefaultFiles();
+app.UseStaticFiles();
 
 // Add Swagger
 app.UseSwagger();
