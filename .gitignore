@@ -10,6 +10,8 @@
 *.userosscache
 *.sln.docstates
 Pizzas.db
+*.db-shm
+*.db-wal
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
