@@ -12,6 +12,7 @@
 Pizzas.db
 *.db-shm
 *.db-wal
+wwwroot
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
