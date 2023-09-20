@@ -1,6 +1,7 @@
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using SluggoPIZZA.Models;
+using SluggoPIZZA.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add SQLite configuration
@@ -36,6 +37,8 @@ app.UseSwaggerUI(c =>
 // Use the CORS capability
 app.UseCors(MyAllowSpecificOrigins);
 
-app.MapGet("/", () => "Hello World!");
+RouteGroupBuilder pizzaItems = app.MapGroup("/api/pizzas");
 
+pizzaItems.MapGet("/", PizzaService.GetAllPizzas);
+pizzaItems.MapPost("/", PizzaService.CreatePizza);
 app.Run();
