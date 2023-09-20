@@ -5,14 +5,7 @@ namespace SluggoPIZZA.Services
 {
     public class PizzaService
     {
-        /* TODO: Add methods for:
-        * getAllPizzas
-        * createPizza
-        * updatePizza(id)
-        * deletePizza(id)
 
-        Return TypedResult with PizzaDTO
-         */
          static public async Task<IResult> GetAllPizzas(PizzaDB db)
         {
             return TypedResults.Ok(await db.Pizzas.Select(x => new PizzaDTO(x)).ToArrayAsync());
