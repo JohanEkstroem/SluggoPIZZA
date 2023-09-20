@@ -44,6 +44,16 @@ namespace SluggoPIZZA.Services
             await db.SaveChangesAsync();
             return TypedResults.NoContent();
         }
+        
+        public static async Task<IResult> DeletePizza(int id, PizzaDB db)
+        {
+            var pizza = await db.Pizzas.FindAsync(id);
+            if (pizza is null) return TypedResults.NotFound();
+
+            db.Pizzas.Remove(pizza);
+            await db.SaveChangesAsync();
+            return TypedResults.NoContent();
+        }
     }
     
 }

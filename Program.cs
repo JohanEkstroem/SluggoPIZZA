@@ -42,4 +42,5 @@ RouteGroupBuilder pizzaItems = app.MapGroup("/api/pizzas");
 pizzaItems.MapGet("/", PizzaService.GetAllPizzas);
 pizzaItems.MapPost("/", PizzaService.CreatePizza);
 pizzaItems.MapPut("/{id}", PizzaService.UpdatePizza);
+pizzaItems.MapDelete("/{id}", PizzaService.DeletePizza);
 app.Run();
