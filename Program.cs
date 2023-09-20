@@ -1,5 +1,11 @@
 using Microsoft.OpenApi.Models;
+using Microsoft.EntityFrameworkCore;
+using SluggoPIZZA.Models;
 var builder = WebApplication.CreateBuilder(args);
+
+// Add SQLite configuration
+var connectionString = builder.Configuration.GetConnectionString("Pizzas") ?? "Data Source=Pizzas.db";
+builder.Services.AddSqlite<PizzaDB>(connectionString);
 
 // Add Swagger configuration
 builder.Services.AddEndpointsApiExplorer();
