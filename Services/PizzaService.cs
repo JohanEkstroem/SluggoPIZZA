@@ -32,6 +32,18 @@ namespace SluggoPIZZA.Services
             pizzaDTO = new PizzaDTO(pizzaItem);
             return TypedResults.Created($"/api/pizzas/{pizzaItem.Id}", pizzaDTO);
         }
+
+        static public async Task<IResult> UpdatePizza(int id, PizzaDTO pizzaDTO, PizzaDB db)
+        {
+            var pizza = await db.Pizzas.FindAsync(id);
+            if (pizza is null) return TypedResults.NotFound();
+
+            pizza.Name = pizzaDTO.Name;
+            pizza.Description = pizzaDTO.Description;
+
+            await db.SaveChangesAsync();
+            return TypedResults.NoContent();
+        }
     }
     
 }
