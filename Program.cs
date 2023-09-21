@@ -22,7 +22,7 @@ builder.Services.AddCors(options =>
   options.AddPolicy(MyAllowSpecificOrigins,
   builder =>
   {
-    builder.WithOrigins("*");
+    builder.WithOrigins("*").AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod();
   });
 });
 var app = builder.Build();
